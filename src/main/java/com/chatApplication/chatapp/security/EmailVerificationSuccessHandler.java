@@ -8,6 +8,7 @@ import com.chatApplication.chatapp.service.EmailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 import jakarta.servlet.ServletException;
@@ -31,20 +32,17 @@ public class EmailVerificationSuccessHandler implements AuthenticationSuccessHan
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
-                                        HttpServletResponse response,
-                                        Authentication authentication)
+            HttpServletResponse response,
+            Authentication authentication)
             throws IOException, ServletException {
-            
+
+        // 1
         String username = authentication.getName();
 
-        // String email = authentication.getName();
-
+        // 2
         MyAppUser user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        String email = user.getEmail();
-
-        // Generate token
         String token = UUID.randomUUID().toString();
 
         VerificationToken verificationToken = VerificationToken.builder()
@@ -54,12 +52,23 @@ public class EmailVerificationSuccessHandler implements AuthenticationSuccessHan
                 .build();
 
         tokenRepository.save(verificationToken);
+        if (authentication == null || !authentication.isAuthenticated()) {
+            response.sendRedirect("/login");
+            return;
+        }
+
+        // String email = authentication.getName();
+
+        String email = user.getEmail();
+
+        // Generate token
 
         String verificationLink = "http://localhost:8080/verify-login?token=" + token;
 
         emailService.sendVerificationEmail(email, verificationLink);
 
-        request.getSession().invalidate();
+        // Step 4: IMPORTANT — log user out (but keep session)
+        SecurityContextHolder.clearContext();
 
         response.sendRedirect("/verify-email-pending?email=" + email);
     }

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat App | Next‑Gen Messaging</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-[#0f172a] via-[#020617] to-black min-h-screen text-gray-200 overflow-x-hidden">
+
+  <!-- Decorative Blurs -->
+  <div class="absolute top-[-10rem] left-[-10rem] w-[30rem] h-[30rem] bg-purple-600/30 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-[-10rem] right-[-10rem] w-[30rem] h-[30rem] bg-pink-600/20 rounded-full blur-3xl"></div>
+
+  <!-- Navbar -->
+  <nav class="relative z-10 backdrop-blur-xl bg-white/5 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+        </div>
+        <span class="text-xl font-bold tracking-wide">Chat Application</span>
+      </div>
+      <a href="/logout"
+        class="px-6 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold shadow-md hover:scale-105 transition">
+        Logout
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <main class="relative z-10 max-w-7xl mx-auto px-6 py-24">
+    <section class="text-center max-w-4xl mx-auto">
+      <span
+        class="inline-block mb-6 px-6 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-white/20 text-sm tracking-wider">
+        🚀 NEXT‑GEN CHAT PLATFORM
+      </span>
+      <h1
+        class="text-5xl md:text-6xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
+        Conversations,
+        <br class="hidden md:block" />
+        Reinvented for the Future
+      </h1>
+      <p class="mt-8 text-lg text-gray-400">
+        Real‑time messaging • Enterprise‑grade security • Scalable architecture
+      </p>
+      <div class="mt-12 flex flex-col sm:flex-row justify-center gap-6">
+        <button
+          class="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold shadow-xl hover:scale-105 transition">
+          Explore Features
+        </button>
+        <button
+          class="px-8 py-4 rounded-xl border border-white/20 hover:bg-white/10 transition">
+          View Roadmap
+        </button>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="mt-32 grid md:grid-cols-3 gap-10">
+
+      <div
+        class="group relative p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-purple-500/40 transition">
+        <div
+          class="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+        <div
+          class="w-14 h-14 mb-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Ultra‑Fast Messaging</h3>
+        <p class="text-gray-400 text-sm">Powered by WebSockets for millisecond‑level message delivery.</p>
+      </div>
+
+      <div
+        class="group relative p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-pink-500/40 transition">
+        <div
+          class="absolute inset-0 rounded-2xl bg-gradient-to-br from-pink-500/10 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+        <div
+          class="w-14 h-14 mb-6 bg-gradient-to-br from-pink-500 to-red-500 rounded-xl flex items-center justify-center shadow-lg">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">End‑to‑End Security</h3>
+        <p class="text-gray-400 text-sm">Encrypted sessions with token‑based authentication.</p>
+      </div>
+
+      <div
+        class="group relative p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-blue-500/40 transition">
+        <div
+          class="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+        <div
+          class="w-14 h-14 mb-6 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Smart Group Chats</h3>
+        <p class="text-gray-400 text-sm">Create scalable groups with roles and permissions.</p>
+      </div>
+
+    </section>
+
+    <!-- Progress -->
+    <section
+      class="mt-32 max-w-3xl mx-auto p-12 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10">
+      <h2 class="text-2xl font-bold text-center mb-10">Platform Build Progress</h2>
+      <div class="mb-6">
+        <div class="flex justify-between mb-2 text-sm text-gray-400">
+          <span>Overall Completion</span>
+          <span class="font-semibold text-white">40%</span>
+        </div>
+        <div class="w-full h-4 bg-black/40 rounded-full overflow-hidden">
+          <div
+            class="h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"
+            style="width:40%"></div>
+        </div>
+      </div>
+      <p class="text-center text-gray-400 mt-6">
+        Major features rolling out soon. You’re early 🚀
+      </p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative z-10 mt-32 py-8 text-center text-sm text-gray-500">
+    © 2025 Chat Application. Crafted with ❤️ & Spring Boot.
+  </footer>
+
+</body>
+</html>
