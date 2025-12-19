@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 @Controller
-public class EmailController {
+public class EmailVerificationController {
 
     @Autowired
     private TokenVerificationRepository tokenRepository;
@@ -30,20 +30,10 @@ public class EmailController {
     @Autowired
     private MyAppUserService userDetailsService;
 
-    @GetMapping("/verify-email-pending")
-    public String pendingEmailPage(String email) {
-        // return "A verification link has been sent to: " + email;
-        return "verify-email-pending";
-    }
-
-    // @GetMapping("/verify-login")
-    // public String verifyLoginToken(String token) {
-    // return "Token received: " + token + " (You will handle verification
-    // logichere)";
-    // }
 
     @GetMapping("/verify-login")
     public String verifyLoginToken( @RequestParam("token") String token, HttpServletRequest request) {
+
         Optional<VerificationToken> tokenOpt = tokenRepository.findByToken(token);
         
         if (tokenOpt.isEmpty()) {
@@ -57,7 +47,6 @@ public class EmailController {
             return "redirect:/login?error=token_expired";
         }
 
-        // String email = verificationToken.getUser().getEmail();
 
         String username = verificationToken.getUser().getUsername();
 
@@ -86,12 +75,5 @@ public class EmailController {
         return "redirect:/home";
 
 
-    }
-
-
-    // OPTIONAL: For manual testing
-    @GetMapping("/test-email")
-    public String testEmail() {
-        return "Use this endpoint to manually test email sending.";
     }
 }

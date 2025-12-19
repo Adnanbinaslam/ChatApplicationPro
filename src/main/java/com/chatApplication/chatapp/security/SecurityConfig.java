@@ -12,21 +12,23 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.chatApplication.chatapp.service.MyAppUserService;
-import lombok.AllArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
-@AllArgsConstructor
 public class SecurityConfig {
-    @Autowired
-    private MyAppUserService appUserService;
 
-     @Autowired
-    private EmailVerificationSuccessHandler emailVerificationSuccessHandler;
+
+    private final MyAppUserService appUserService;
+
+    private final EmailVerificationSuccessHandler emailVerificationSuccessHandler;  
     
+
+    public SecurityConfig(MyAppUserService appUserService, EmailVerificationSuccessHandler emailVerificationSuccessHandler) {          
+        this.appUserService = appUserService;
+        this.emailVerificationSuccessHandler = emailVerificationSuccessHandler;
+    }
+
     @Bean
     public UserDetailsService userDetailsService() {
         return appUserService;
@@ -45,13 +47,6 @@ public class SecurityConfig {
         return provider;
     }
 
-    @Bean
-    public AuthenticationFailureHandler customAuthenticationFailureHandler() {
-        return (request, response, exception) -> {
-            request.setAttribute("errorMessage", "Invalid username or password");
-            request.getRequestDispatcher("/login").forward(request, response);
-        };
-    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -61,10 +56,8 @@ public class SecurityConfig {
                     httpForm.loginPage("/login")
                             .defaultSuccessUrl("/login-success", true)
                             .successHandler(emailVerificationSuccessHandler)
-                            .failureUrl("/login?error").permitAll();
-                            //     // Keep this for errors
-                            //  .failureHandler(customAuthenticationFailureHandler()).permitAll();
-                               
+                            .failureUrl("/login?error")
+                            .permitAll();   
                 })
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/req/signup", "/verify-email-pending",
